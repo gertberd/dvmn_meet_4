@@ -10,12 +10,15 @@ def crop_and_blend(image, one_side_coordinates, sides_coordinates, opacity) -> I
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Стилизует картинку в стиле Энди Уорхола, ')
-    parser.add_argument('--source', help="Исходная картинка (с расширением)", required=True)
+        description='Стилизует картинку в стиле Энди Уорхола и сохраняет её в миниатюру заданного размера.')
+    parser.add_argument(
+        '--source',
+        help="Исходное изображение (с расширением)",
+        required=True)
     parser.add_argument(
         '--dest',
         default="result.jpg",
-        help="Имя получившейся картинки (с расширением)")
+        help="Имя для миниатюры (с расширением) (по умолчанию - result.jpg)")
     parser.add_argument(
         '--opacity',
         default=0.2,
@@ -26,7 +29,10 @@ if __name__ == '__main__':
         default=0.03,
         type=float,
         help='Коэффициент смещения цветовых каналов (по умолчанию - 0.03)')
-    parser.add_argument('--thumb_max_size', default=80, help='Максимальный размер стороны миниатюры в пикселях.')
+    parser.add_argument(
+        '--thumb_max_size',
+        default=80,
+        help='Максимальный размер стороны миниатюры в пикселях (по умолчанию - 80).')
     args = parser.parse_args()
     filename = args.source
     result_filename = args.dest
